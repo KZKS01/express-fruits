@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Page</title>
+</head>
+<body>
+    <!-- getting info from server.js, line 42 -->
+    <h1>Detail for <%= fruit.name %> </h1>
+    <p>Color: <%=  fruit.color %></p>
+    <p>Ready to eat: <%= fruit.readyToEat === true ? 'yes' : 'no' %> </p>
+    
+    <!-- line 16-20 is the same as line 13 -->
+    <% if(fruit.readyToEat === true) { %> 
+        <p>Ready to eat: Yes</p>
+    <% } else { %>
+        <p>Ready to eat: No</p>
+    <% } %>   
+</body>
+</html>
