@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit A Fruit</title>
+</head>
+<body>
+    <h1>Edit <%= fruit.name %></h1>
+    <!-- "index" is from server.js line 93 -->
+    <form action="/fruits/<%= index %>?_method=put" method="post">
+        <label>
+            Name: 
+            <!-- value attribute will put the original values in the box -->
+            <input type="text" name="name" value="<%= fruit.name %>">
+        </label>
+        <label>
+            Color:
+            <input type="text" name="color" value="<%= fruit.color %>">
+        </label>
+        <label>
+            Ready to Eat?
+            <!-- checkbox prechecked with "checked" -->
+            <!-- notice the <% %> at the end-->
+            <input type="checkbox" name="readyToEat" <% if(fruit.readyToEat) {%> checked <% } %>>
+            <!-- ternary statement: <%- fruit.readyToEat ? 'checked': '' %>  -->
+        </label>
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>

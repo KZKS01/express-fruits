@@ -1,0 +1,39 @@
+<!-- Home page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fruits Index Page</title>
+    <link rel="stylesheet" href="/css.styles.css">
+    <script defer src="/js/script.js"></script>
+</head>
+<body>
+    <nav>
+        <a href="/fruits/new">Add a New Fruit</a>
+    </nav>
+    <h1>Here are all the fruits</h1>
+    <img src="/imgs/download.jpg" alt="gala">
+    
+    <ul>        
+        <% for(let i = 0; i < fruits.length; i++) { %>
+            <li>
+                <!-- whatever is in href will be put directly in the url -->
+                <!-- get request, type of http method: post -->
+                <a href="/fruits/<%= i %>">  
+                    <%= fruits[i].name %> 
+                </a>
+                <!-- cannot send delete or put request on html/browser due to security, therefore the post request -->
+                <form action="/fruits/<%= i %>?_method=delete" method="post"> 
+                    <input type="submit" value="delete">
+                </form>
+                <!-- server.js line 89 -->
+                <a href="/fruits/<%= i %>/Edit">Edit</a> 
+                
+            </li> 
+        <% } %> 
+    </ul>
+
+</body>
+</html>
