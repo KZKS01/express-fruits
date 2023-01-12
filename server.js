@@ -53,15 +53,23 @@ app.get('/fruits', function(req, res) {
         const filteredFruits = fruits.filter(function(f){ //filter the fruit array
             return f.readyToEat === (readyToEat === 'true') //true or false
         });
-        res.render('index.ejs', {fruits: filteredFruits});
+        res.render('index.ejs', {
+            fruits: filteredFruits, 
+            title: 'Index Page' //original line 58
+        });
     } else {
-        res.render('index.ejs', {fruits: fruits});
+        res.render('index.ejs', {
+            fruits: fruits, 
+            title: 'Index Page'
+        });
     }
 });
 
 //new - GET /fruits/new - send the user to a page with a form where thy can add a new fruit
 app.get('/fruits/new', function(req, res){
-    res.render('new.ejs');
+    res.render('new.ejs', {
+        title: 'Create a new Fruit'
+    });
 })
 
 //delete - DELETE request /fruits/:indexOfruitsArray
@@ -108,7 +116,8 @@ app.get('/fruits/:indexOfFruitsArray/edit', function(req, res){  //original line
     //1) find the fruit we need to edit
     res.render('edit.ejs', {
         fruit: fruits[req.params.indexOfFruitsArray],
-        index: req.params.indexOfFruitsArray  //original line 93
+        index: req.params.indexOfFruitsArray,  //original line 93
+        title: 'Edit ' + fruits.name
     });
     //2) include the fruit to edit inside the edit.ejs template
     
@@ -122,7 +131,10 @@ app.get('/fruits/:indexOfFruitsArray/edit', function(req, res){  //original line
 // :index can be referenced to in this file, but cannot do in index.ejs line 16
 app.get('/fruits/:index', function(req, res){
     const fruit = fruits[req.params.index]; //original line 41
-    res.render('show.ejs', {fruit: fruit});//invokes the function of the view engine, look into ejs files and turn it into html in the browser
+    res.render('show.ejs', {
+        fruit: fruit,
+        title: fruit.name + 'details'
+    });//invokes the function of the view engine, look into ejs files and turn it into html in the browser
 }); //1st fruit is key; 2nd fruit is value, it represents line 41; the name fruit is just to be more descriptive
 //{fruitInfo: fruit} is the data that it is passing, object allows us to hold collections of value
 
